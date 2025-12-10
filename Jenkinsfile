@@ -29,7 +29,7 @@ pipeline {
          stage('Run Application') {
             steps {
                 bat '''
-                .call venv\\Scripts\\activate
+                call venv\\Scripts\\activate
                 python app/main.py
                 '''
             }
