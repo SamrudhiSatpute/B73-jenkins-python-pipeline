@@ -1,40 +1,34 @@
 pipeline {
     agent any
 
-    stages{
+    stages {
         stage('Git repo clone') {
-            steps{
-                git branch: 'master',
-                    url:'https://github.com/AnitaPK/B73-python-pipeline-jenkin.git'
-            }
-        }
-        stage('Create environment') {
             steps {
-                bat ''' 
-                    python -m venv venv
-                     call venv\\Scripts\\activate
-                    pip install --upgrade pip
-                    pip install -r requirements.txt
-                 '''
+                git branch: 'main',
+                    url: 'https://github.com/SamrudhiSatpute/B73-jenkins-python-pipeline.git'
             }
         }
-        // stage('Run the test') {
-        //     steps {
-        //         bat '''
-        //             call venv\\Scripts\\activate
-        //             pytest -v
-        //         '''
-        //     }
-        // }
-         stage('Run Application') {
+
+       
+
+        stage('Deploy HTML & CSS') {
             steps {
                 bat '''
-                call venv\\Scripts\\activate
-                python app/main.py
+                    xcopy /Y /E index.html ""D:\WisdomSprout\Internship\B73-jenkins-python-pipeline\add\index.html""
+                    xcopy /Y /E style.css ""D:\WisdomSprout\Internship\B73-jenkins-python-pipeline\add\style.css""
+                    
                 '''
             }
-         }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                
+                echo 'Website deployed successfully!'
+            }
+        }
     }
+
     post {
         always {
             echo 'Pipeline completed!!!'
