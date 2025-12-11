@@ -9,21 +9,17 @@ pipeline {
             }
         }
 
-       
-
         stage('Deploy HTML & CSS') {
             steps {
                 bat '''
-                    xcopy /Y /E index.html ""D:\WisdomSprout\Internship\B73-jenkins-python-pipeline\add\index.html""
-                    xcopy /Y /E style.css ""D:\WisdomSprout\Internship\B73-jenkins-python-pipeline\add\style.css""
-                    
+                    xcopy /Y /E index.html "D:\\WisdomSprout\\Internship\\B73-jenkins-python-pipeline\\add\\index.html"
+                    xcopy /Y /E style.css "D:\\WisdomSprout\\Internship\\B73-jenkins-python-pipeline\\add\\style.css"
                 '''
             }
         }
 
         stage('Verify Deployment') {
             steps {
-                
                 echo 'Website deployed successfully!'
             }
         }
