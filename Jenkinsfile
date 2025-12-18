@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/SamrudhiSatpute/B73-jenkins-python-pipeline.git'
+                git branch: 'main', url: 'https://github.com/SamrudhiSatpute/B73-jenkins-python-pipeline.git'
             }
         }
 
@@ -12,14 +12,13 @@ pipeline {
             steps {
                 bat 'pip install pytest'
             }
-
         }
 
         stage('Run Tests') {
             steps {
                 bat '''
                 set PYTHONPATH=%WORKSPACE%
-                pytest -q
+                pytest test_calculator.py -q
                 '''
             }
         }
