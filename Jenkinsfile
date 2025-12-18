@@ -12,6 +12,7 @@ pipeline {
             steps {
                 bat 'pip install pytest'
             }
+            
         }
 
         stage('Run Tests') {
