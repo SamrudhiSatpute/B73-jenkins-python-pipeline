@@ -12,12 +12,15 @@ pipeline {
             steps {
                 bat 'pip install pytest'
             }
-            
+
         }
 
         stage('Run Tests') {
             steps {
-                bat 'pytest -q'
+                bat '''
+                set PYTHONPATH=%WORKSPACE%
+                pytest -q
+                '''
             }
         }
     }
